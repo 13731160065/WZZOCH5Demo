@@ -17,8 +17,8 @@
 
 //调用方法
 - (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName;
-- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1;
-- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1 arg2:(id)arg2;
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1;
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
 
 //获取变量
 - (id)getObjWithKeyPath:(NSString *)keyPath Obj:(id)obj;

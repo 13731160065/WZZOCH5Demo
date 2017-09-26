@@ -71,7 +71,7 @@
 }
 
 //调用方法1个参数
-- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1 {
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 {
     SEL func = NSSelectorFromString(funcName);
     if ([obj respondsToSelector:func]) {
         [obj performSelector:func withObject:arg1];//这个警告不用管
@@ -81,7 +81,7 @@
 }
 
 //调用方法2个参数
-- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1 arg2:(id)arg2 {
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
     SEL func = NSSelectorFromString(funcName);
     if ([obj respondsToSelector:func]) {
         [obj performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
