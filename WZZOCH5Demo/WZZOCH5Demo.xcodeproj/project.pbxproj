@@ -10,7 +10,6 @@
 		C58609441F79F16C0028C128 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609431F79F16C0028C128 /* main.m */; };
 		C58609471F79F16C0028C128 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609461F79F16C0028C128 /* AppDelegate.m */; };
 		C586094A1F79F16C0028C128 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609491F79F16C0028C128 /* ViewController.m */; };
-		C586094D1F79F16C0028C128 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C586094B1F79F16C0028C128 /* Main.storyboard */; };
 		C586094F1F79F16C0028C128 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C586094E1F79F16C0028C128 /* Assets.xcassets */; };
 		C58609521F79F16C0028C128 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C58609501F79F16C0028C128 /* LaunchScreen.storyboard */; };
 		C586095D1F79F16C0028C128 /* WZZOCH5DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C586095C1F79F16C0028C128 /* WZZOCH5DemoTests.m */; };
@@ -18,6 +17,7 @@
 		C586097B1F79F2370028C128 /* WZZOCH5VC.m in Sources */ = {isa = PBXBuildFile; fileRef = C586097A1F79F2370028C128 /* WZZOCH5VC.m */; };
 		C586097E1F7A000F0028C128 /* WZZOCH5Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = C586097D1F7A000F0028C128 /* WZZOCH5Manager.m */; };
 		C58609811F7A029F0028C128 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C58609801F7A029F0028C128 /* libz.tbd */; };
+		C5BAE3A41F7A629A00AE17A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5BAE3A31F7A629A00AE17A1 /* Main.storyboard */; };
 		C5CC2FE31F7A3F4000AB64F0 /* aes_ni.c in Sources */ = {isa = PBXBuildFile; fileRef = C5CC2FBE1F7A3F4000AB64F0 /* aes_ni.c */; };
 		C5CC2FE41F7A3F4000AB64F0 /* aescrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = C5CC2FC01F7A3F4000AB64F0 /* aescrypt.c */; };
 		C5CC2FE51F7A3F4000AB64F0 /* aeskey.c in Sources */ = {isa = PBXBuildFile; fileRef = C5CC2FC11F7A3F4000AB64F0 /* aeskey.c */; };
@@ -74,7 +74,6 @@
 		C58609461F79F16C0028C128 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C58609481F79F16C0028C128 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C58609491F79F16C0028C128 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C586094C1F79F16C0028C128 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C586094E1F79F16C0028C128 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C58609511F79F16C0028C128 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C58609531F79F16C0028C128 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		C586097C1F7A000F0028C128 /* WZZOCH5Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZZOCH5Manager.h; sourceTree = "<group>"; };
 		C586097D1F7A000F0028C128 /* WZZOCH5Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZZOCH5Manager.m; sourceTree = "<group>"; };
 		C58609801F7A029F0028C128 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C5BAE3A31F7A629A00AE17A1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C5CC2FBD1F7A3F4000AB64F0 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		C5CC2FBE1F7A3F4000AB64F0 /* aes_ni.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_ni.c; sourceTree = "<group>"; };
 		C5CC2FBF1F7A3F4000AB64F0 /* aes_ni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes_ni.h; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 				C58609461F79F16C0028C128 /* AppDelegate.m */,
 				C58609481F79F16C0028C128 /* ViewController.h */,
 				C58609491F79F16C0028C128 /* ViewController.m */,
-				C586094B1F79F16C0028C128 /* Main.storyboard */,
+				C5BAE3A31F7A629A00AE17A1 /* Main.storyboard */,
 				C586094E1F79F16C0028C128 /* Assets.xcassets */,
 				C58609501F79F16C0028C128 /* LaunchScreen.storyboard */,
 				C58609531F79F16C0028C128 /* Info.plist */,
@@ -408,9 +408,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5BAE3A41F7A629A00AE17A1 /* Main.storyboard in Resources */,
 				C58609521F79F16C0028C128 /* LaunchScreen.storyboard in Resources */,
 				C586094F1F79F16C0028C128 /* Assets.xcassets in Resources */,
-				C586094D1F79F16C0028C128 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,14 +492,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C586094B1F79F16C0028C128 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C586094C1F79F16C0028C128 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C58609501F79F16C0028C128 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

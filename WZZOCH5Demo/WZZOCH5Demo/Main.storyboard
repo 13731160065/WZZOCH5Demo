@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4Pv-3r-J1E">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="O4e-4B-i1j">
+            <objects>
+                <navigationController id="4Pv-3r-J1E" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xEV-Pj-wnL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EhA-d6-Blo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u8h-27-DgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-546" y="139"/>
+        </scene>
+        <!--哈哈-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -22,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFf-A1-zP5">
-                                <rect key="frame" x="0.0" y="20" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7l6-PG-Gws"/>
                                 </constraints>
@@ -31,14 +47,28 @@
                                     <action selector="downloadClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EOp-KW-s7I"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twm-We-PMM">
+                                <rect key="frame" x="0.0" y="102" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qcZ-F0-zWa"/>
+                                </constraints>
+                                <state key="normal" title="跳转vc"/>
+                                <connections>
+                                    <action selector="gotoVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bb2-E2-0Lj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FFf-A1-zP5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="31m-7E-Be8"/>
                             <constraint firstItem="FFf-A1-zP5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BOV-fN-sRZ"/>
+                            <constraint firstItem="twm-We-PMM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NPk-3x-wvW"/>
+                            <constraint firstItem="twm-We-PMM" firstAttribute="top" secondItem="FFf-A1-zP5" secondAttribute="bottom" constant="8" id="m9U-jG-rcP"/>
+                            <constraint firstAttribute="trailing" secondItem="twm-We-PMM" secondAttribute="trailing" id="nxp-As-pZO"/>
                             <constraint firstAttribute="trailing" secondItem="FFf-A1-zP5" secondAttribute="trailing" id="wsX-xL-Sgg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="哈哈" id="Lx9-9B-CwC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

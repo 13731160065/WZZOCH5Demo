@@ -7,7 +7,7 @@
 //
 
 #import "WZZOCH5VC.h"
-#import <JavaScriptCore/JavaScriptCore.h>
+#import "WZZOCH5Manager.h"
 
 @interface WZZOCH5VC ()<UIWebViewDelegate>
 {
@@ -34,7 +34,27 @@
     mainWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:mainWebView];
     [mainWebView setDelegate:self];
+    if ([_url hasPrefix:@"wzzoch5://"]) {
+        _url = [[_url componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
+        _url = [[NSString stringWithFormat:@"%@/%@/%@/", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] stringByAppendingString:_url];
+    }
     [mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
+}
+
+#pragma mark - js代理
+- (id)getObjWithKeyPath:(NSString *)keyPath {
+    return [self valueForKeyPath:keyPath];
+}
+
+- (void)setObjWithKeyPath:(NSString *)keyPath value:(id)value {
+    return [self setValue:value forKey:keyPath];
+}
+
+- (void)callFunc:(NSString *)funcName funcArg:(NSString *)funcArg {
+    SEL selfFunc = NSSelectorFromString(funcName);
+    if ([self respondsToSelector:selfFunc]) {
+        [self performSelector:selfFunc];//警告不用管，有没有让h5控制
+    }
 }
 
 #pragma mark - webview代理

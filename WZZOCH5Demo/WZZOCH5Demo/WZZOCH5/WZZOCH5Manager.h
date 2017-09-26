@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#define WZZOCH5Manager_unzipDir @"Documents/unzipDir"
+#define WZZOCH5Manager_unzipName @"www"
+#define WZZOCH5Manager_useZipArchive 1
+
 @interface WZZOCH5Manager : NSObject
 
 /**

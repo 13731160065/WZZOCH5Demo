@@ -9,9 +9,6 @@
 #import "WZZOCH5Manager.h"
 #import "ZipArchive.h"
 #import "zlib.h"
-#define WZZOCH5Manager_unzipDir @"unzipDir"
-#define WZZOCH5Manager_unzipName @"www"
-#define WZZOCH5Manager_useZipArchive 1
 
 static WZZOCH5Manager * wzzOCH5Manager;
 
@@ -27,12 +24,27 @@ static WZZOCH5Manager * wzzOCH5Manager;
 
 + (void)unzipToBundleWithData:(NSData *)data {
     NSFileManager * fileManager = [NSFileManager defaultManager];
+    //如果没有这个文件夹就创建
     if (![fileManager isExecutableFileAtPath:[NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir]]) {
         [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir] withIntermediateDirectories:NO attributes:nil error:nil];
     }
 #if WZZOCH5Manager_useZipArchive
+    //用下载文件创建zip
     [fileManager createFileAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] contents:data attributes:nil];
-    [SSZipArchive unzipFileAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] toDestination:[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName]];
+    
+    //解压缩成文件夹_2
+    BOOL unzipOK = [SSZipArchive unzipFileAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] toDestination:[NSString stringWithFormat:@"%@/%@/%@_2", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName]];
+    
+    if (unzipOK) {
+        //解压缩成功
+        //删除旧的文件夹
+        [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
+        //将解压的文件夹_2换成正式文件夹
+        [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@/%@_2", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] toPath:[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
+    }
+    
+    //移除zip包
+    [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
 #else
     NSData * unzipData = [self unzipWithData:data];
     if (unzipData) {

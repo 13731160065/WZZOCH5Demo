@@ -7,8 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 
-@interface WZZOCH5VC : UIViewController
+@protocol WZZOCH5Delegate <JSExport>
+
+- (id)getObjWithKeyPath:(NSString *)keyPath;
+- (void)setObjWithKeyPath:(NSString *)keyPath value:(id)value;
+- (void)callObj:(id)obj
+           func:(NSString *)funcName
+        funcArg:(NSString *)funcArg;
+
+@end
+
+@interface WZZOCH5VC : UIViewController<WZZOCH5Delegate>
 
 /**
  加载的url
