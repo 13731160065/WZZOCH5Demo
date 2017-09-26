@@ -19,7 +19,7 @@
 //下载
 - (IBAction)downloadClick:(id)sender {
     NSLog(@"%@", NSHomeDirectory());
-    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://github.com/13731160065/tmp/raw/master/test1.zip"]];
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://github.com/13731160065/tmp/raw/master/index.zip"]];
     [WZZOCH5Manager unzipToBundleWithData:data];
     NSLog(@"ok");
 }

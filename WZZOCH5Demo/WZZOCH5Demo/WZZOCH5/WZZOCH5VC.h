@@ -11,11 +11,44 @@
 
 @protocol WZZOCH5Delegate <JSExport>
 
-- (id)getObjWithKeyPath:(NSString *)keyPath;
-- (void)setObjWithKeyPath:(NSString *)keyPath value:(id)value;
-- (void)callObj:(id)obj
-           func:(NSString *)funcName
-        funcArg:(NSString *)funcArg;
+#pragma mark - 类与变量
+//创建类
+- (id)allocWithClass:(NSString *)className;
+
+//调用方法
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName;
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1;
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1 arg2:(id)arg2;
+
+//获取变量
+- (id)getObjWithKeyPath:(NSString *)keyPath Obj:(id)obj;
+
+//变量赋值
+- (void)setObjWithKeyPath:(NSString *)keyPath Value:(id)value Obj:(id)obj;
+
+#pragma mark - 界面跳转
+//nav模式进入界面
+- (void)pushVC:(id)vc;
+
+//nav模式退出界面
+- (void)popVC;
+
+//present模式进入界面
+- (void)presentVC:(id)vc;
+
+//present模式退出界面
+- (void)dismissVC;
+
+#pragma mark - 回调函数
+//js回调oc接口，可以返回json字符串给oc，视情况而定
+- (void)returnJsonStr:(id)jsonStr;
+
+/**
+ js回调js接口，js可以实现一个方法，在该方法里写回调函数
+ 1.要求方法为无参方法
+ 2.参数将会以JSContext的形式传递，在方法内部用obh5CallBack_xxx形式调用，xxx为传入ArgsDic的参数的键
+ */
+- (void)callBackFunc:(NSString *)funcName ArgsDic:(id)dic;
 
 @end
 
@@ -27,13 +60,14 @@
 @property (nonatomic, strong) NSString * url;
 
 /**
- 直接用的变量，由js调用名称（key）和变量（value）组成
+ 原生参数
+ 原生参数在js中以och5_xxx的形式调用
  */
-@property (nonatomic, strong) NSDictionary <NSString *, id>* justUseObjDic;
+@property (nonatomic, strong) NSDictionary <NSString *, id>* args;
 
 /**
- 需要创建的变量的类
+ 处理js回调
  */
-@property (nonatomic, strong) NSArray <NSString *>* needAllocObjClassArr;
+- (void)handleJSCallBack:(void(^)(id resp))aBlock;
 
 @end

@@ -41,6 +41,7 @@ static WZZOCH5Manager * wzzOCH5Manager;
         [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
         //将解压的文件夹_2换成正式文件夹
         [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@/%@_2", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] toPath:[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
+        [self cleanWebCache];
     }
     
     //移除zip包
@@ -53,6 +54,11 @@ static WZZOCH5Manager * wzzOCH5Manager;
     }
 #endif
     
+}
+
+//清除web缓存
++ (void)cleanWebCache {
+#warning 这里有web缓存问题，实在不行就弄不同的路径
 }
 
 + (NSData *)unzipWithData:(NSData *)data {

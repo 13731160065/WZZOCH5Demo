@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7184A5EF1F7AC84400B48B15 /* WZZTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7184A5EE1F7AC84400B48B15 /* WZZTestModel.m */; };
 		C58609441F79F16C0028C128 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609431F79F16C0028C128 /* main.m */; };
 		C58609471F79F16C0028C128 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609461F79F16C0028C128 /* AppDelegate.m */; };
 		C586094A1F79F16C0028C128 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609491F79F16C0028C128 /* ViewController.m */; };
@@ -68,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7184A5ED1F7AC84400B48B15 /* WZZTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZZTestModel.h; sourceTree = "<group>"; };
+		7184A5EE1F7AC84400B48B15 /* WZZTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZZTestModel.m; sourceTree = "<group>"; };
 		C586093F1F79F16C0028C128 /* WZZOCH5Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WZZOCH5Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58609431F79F16C0028C128 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C58609451F79F16C0028C128 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				C58609781F79F2280028C128 /* WZZOCH5 */,
 				C58609451F79F16C0028C128 /* AppDelegate.h */,
 				C58609461F79F16C0028C128 /* AppDelegate.m */,
+				7184A5ED1F7AC84400B48B15 /* WZZTestModel.h */,
+				7184A5EE1F7AC84400B48B15 /* WZZTestModel.m */,
 				C58609481F79F16C0028C128 /* ViewController.h */,
 				C58609491F79F16C0028C128 /* ViewController.m */,
 				C5BAE3A31F7A629A00AE17A1 /* Main.storyboard */,
@@ -450,6 +455,7 @@
 				C5CC2FEA1F7A3F4000AB64F0 /* pwd2key.c in Sources */,
 				C5CC2FEE1F7A3F4000AB64F0 /* ioapi_buf.c in Sources */,
 				C5CC2FEC1F7A3F4000AB64F0 /* crypt.c in Sources */,
+				7184A5EF1F7AC84400B48B15 /* WZZTestModel.m in Sources */,
 				C5CC2FED1F7A3F4000AB64F0 /* ioapi.c in Sources */,
 				C58609471F79F16C0028C128 /* AppDelegate.m in Sources */,
 				C5CC2FE31F7A3F4000AB64F0 /* aes_ni.c in Sources */,

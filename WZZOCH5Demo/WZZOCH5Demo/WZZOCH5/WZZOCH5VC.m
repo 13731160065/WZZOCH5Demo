@@ -12,6 +12,7 @@
 @interface WZZOCH5VC ()<UIWebViewDelegate>
 {
     UIWebView * mainWebView;
+    void(^_handleJSBlock)(id);
 }
 
 @end
@@ -31,8 +32,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    
     mainWebView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:mainWebView];
+    [mainWebView.scrollView setBounces:NO];
+    [mainWebView.scrollView setShowsVerticalScrollIndicator:NO];
+    [mainWebView.scrollView setShowsHorizontalScrollIndicator:NO];
+    [mainWebView setScalesPageToFit:YES];
     [mainWebView setDelegate:self];
     if ([_url hasPrefix:@"wzzoch5://"]) {
         _url = [[_url componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
@@ -41,40 +48,122 @@
     [mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
 }
 
+//js回调oc block
+- (void)handleJSCallBack:(void (^)(id))aBlock {
+    _handleJSBlock = aBlock;
+}
+
 #pragma mark - js代理
-- (id)getObjWithKeyPath:(NSString *)keyPath {
-    return [self valueForKeyPath:keyPath];
+//创建对象
+- (id)allocWithClass:(NSString *)className {
+    Class aClass = NSClassFromString(className);
+    return [[aClass alloc] init];
 }
 
-- (void)setObjWithKeyPath:(NSString *)keyPath value:(id)value {
-    return [self setValue:value forKey:keyPath];
-}
-
-- (void)callFunc:(NSString *)funcName funcArg:(NSString *)funcArg {
-    SEL selfFunc = NSSelectorFromString(funcName);
-    if ([self respondsToSelector:selfFunc]) {
-        [self performSelector:selfFunc];//警告不用管，有没有让h5控制
+//调用方法
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName {
+    SEL func = NSSelectorFromString(funcName);
+    if ([obj respondsToSelector:func]) {
+        [obj performSelector:func];//这个警告不用管
+        return YES;
     }
+    return NO;
+}
+
+//调用方法1个参数
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1 {
+    SEL func = NSSelectorFromString(funcName);
+    if ([obj respondsToSelector:func]) {
+        [obj performSelector:func withObject:arg1];//这个警告不用管
+        return YES;
+    }
+    return NO;
+}
+
+//调用方法2个参数
+- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName arg1:(id)arg1 arg2:(id)arg2 {
+    SEL func = NSSelectorFromString(funcName);
+    if ([obj respondsToSelector:func]) {
+        [obj performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
+        return YES;
+    }
+    return NO;
+}
+
+//js获取变量
+- (id)getObjWithKeyPath:(NSString *)keyPath Obj:(id)obj {
+    return [obj valueForKeyPath:keyPath];
+}
+
+//js给变量赋值
+- (void)setObjWithKeyPath:(NSString *)keyPath Value:(id)value Obj:(id)obj {
+    return [obj setValue:value forKey:keyPath];
+}
+
+//pop界面
+- (void)popVC {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//push界面
+- (void)pushVC:(id)vc {
+    [vc handleJSCallBack:^(id resp) {
+        [mainWebView stringByEvaluatingJavaScriptFromString:@""];
+    }];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//present界面
+- (void)presentVC:(id)vc {
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+//dismiss界面
+- (void)dismissVC {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//js回调oc
+- (void)returnJsonStr:(id)jsonStr {
+    if (_handleJSBlock) {
+        _handleJSBlock(jsonStr);
+    }
+}
+
+//js回调js
+- (void)callBackFunc:(NSString *)funcName ArgsDic:(id)dic {
+    if ([dic isKindOfClass:[NSDictionary class]]) {
+        JSContext * jsCon = [mainWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+        NSDictionary * aDic = dic;
+        NSArray * keysArr = aDic.allKeys;
+        for (int i = 0; i < keysArr.count; i++) {
+            NSString * key = keysArr[i];
+            NSString * value = aDic[key];
+            key = [@"och5CallBack_" stringByAppendingString:key];
+            jsCon[key] = value;
+        }
+    }
+    
+    [mainWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"%@()", funcName]];
 }
 
 #pragma mark - webview代理
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     JSContext * jsCon = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    jsCon[@"selfVC"] = self;
-    //需要创建的变量
-    for (int i = 0; i < _needAllocObjClassArr.count; i++) {
-        Class aClass = NSClassFromString(_needAllocObjClassArr[i]);
-        id obj = [[aClass alloc] init];
-        jsCon[_needAllocObjClassArr] = obj;
-    }
+    jsCon[@"och5_jsContext"] = self;
     
-    //直接用的变量
-    NSArray * allKeysArr = _justUseObjDic.allKeys;
-    for (int i = 0; i < allKeysArr.count; i++) {
-        NSString * key = allKeysArr[i];
-        id value = _justUseObjDic[key];
+    NSArray * keysArr = _args.allKeys;
+    for (int i = 0; i < keysArr.count; i++) {
+        NSString * key = keysArr[i];
+        NSString * value = _args[key];
+        key = [@"och5_" stringByAppendingString:key];
         jsCon[key] = value;
     }
+    
+    jsCon.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) {
+        context.exception = exceptionValue;
+        NSLog(@"异常信息：%@", exceptionValue);
+    };
 }
 
 @end
