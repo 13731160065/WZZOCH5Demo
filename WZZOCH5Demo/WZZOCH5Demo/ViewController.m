@@ -12,6 +12,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *tf;
+
 @end
 
 @implementation ViewController
@@ -19,7 +21,7 @@
 //下载
 - (IBAction)downloadClick:(id)sender {
     NSLog(@"%@", NSHomeDirectory());
-    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://github.com/13731160065/tmp/raw/master/index.zip"]];
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text]]];
     [WZZOCH5Manager unzipToBundleWithData:data];
     NSLog(@"ok");
 }
@@ -28,6 +30,10 @@
     WZZOCH5VC * vc = [[WZZOCH5VC alloc] init];
     vc.url = @"wzzoch5://test1/test.html";
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 - (void)viewDidLoad {

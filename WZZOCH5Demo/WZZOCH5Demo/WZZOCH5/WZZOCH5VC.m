@@ -43,9 +43,9 @@
     [mainWebView setDelegate:self];
     if ([_url hasPrefix:@"wzzoch5://"]) {
         _url = [[_url componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
-        _url = [[NSString stringWithFormat:@"%@/%@/%@/", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] stringByAppendingString:_url];
+        _url = [[WZZOCH5Manager wwwDir] stringByAppendingFormat:@"/%@", _url];
     }
-    [mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
+    [mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0f]];
 }
 
 //js回调oc block
@@ -62,32 +62,41 @@
 
 //调用方法
 - (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName {
-    SEL func = NSSelectorFromString(funcName);
-    if ([obj respondsToSelector:func]) {
-        [obj performSelector:func];//这个警告不用管
-        return YES;
-    }
-    return NO;
+    __block BOOL isOK = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SEL func = NSSelectorFromString(funcName);
+        if ([obj respondsToSelector:func]) {
+            [obj performSelector:func];//这个警告不用管
+            isOK = YES;
+        }
+    });
+    return isOK;
 }
 
 //调用方法1个参数
 - (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 {
-    SEL func = NSSelectorFromString(funcName);
-    if ([obj respondsToSelector:func]) {
-        [obj performSelector:func withObject:arg1];//这个警告不用管
-        return YES;
-    }
-    return NO;
+    __block BOOL isOK = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SEL func = NSSelectorFromString(funcName);
+        if ([obj respondsToSelector:func]) {
+            [obj performSelector:func withObject:arg1];//这个警告不用管
+            isOK = YES;
+        }
+    });
+    return isOK;
 }
 
 //调用方法2个参数
 - (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
-    SEL func = NSSelectorFromString(funcName);
-    if ([obj respondsToSelector:func]) {
-        [obj performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
-        return YES;
-    }
-    return NO;
+    __block BOOL isOK = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SEL func = NSSelectorFromString(funcName);
+        if ([obj respondsToSelector:func]) {
+            [obj performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
+        }
+        isOK = YES;
+    });
+    return isOK;
 }
 
 //js获取变量
@@ -102,25 +111,33 @@
 
 //pop界面
 - (void)popVC {
-    [self.navigationController popViewControllerAnimated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 //push界面
 - (void)pushVC:(id)vc {
-    [vc handleJSCallBack:^(id resp) {
-        [mainWebView stringByEvaluatingJavaScriptFromString:@""];
-    }];
-    [self.navigationController pushViewController:vc animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+//        [vc handleJSCallBack:^(id resp) {
+//            [mainWebView stringByEvaluatingJavaScriptFromString:@""];
+//        }];
+        [self.navigationController pushViewController:vc animated:YES];
+    });
 }
 
 //present界面
 - (void)presentVC:(id)vc {
-    [self presentViewController:vc animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:vc animated:YES completion:nil];
+    });
 }
 
 //dismiss界面
 - (void)dismissVC {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 //js回调oc
