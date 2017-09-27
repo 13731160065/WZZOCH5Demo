@@ -60,6 +60,10 @@ static WZZOCH5Manager * wzzOCH5Manager;
             [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@_2", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
             //将解压的文件夹_3换成文件夹1
             [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@/%@_3", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] toPath:[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
+        } else {
+            //没有旧的文件夹
+            //将解压的文件夹_3换成文件夹1
+            [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@/%@_3", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] toPath:[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
         }
     }
     
