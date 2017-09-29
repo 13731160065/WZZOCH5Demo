@@ -144,27 +144,20 @@
     }
 }
 
-//js回调js
-- (void)callBackFunc:(NSString *)funcName ArgsDic:(id)dic {
-    if ([dic isKindOfClass:[NSDictionary class]]) {
-        JSContext * jsCon = [mainWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-        NSDictionary * aDic = dic;
-        NSArray * keysArr = aDic.allKeys;
-        for (int i = 0; i < keysArr.count; i++) {
-            NSString * key = keysArr[i];
-            NSString * value = aDic[key];
-            key = [@"och5CallBack_" stringByAppendingString:key];
-            jsCon[key] = value;
-        }
-    }
-    
-    [mainWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"%@()", funcName]];
-}
-
 #pragma mark - webview代理
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     JSContext * jsCon = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     jsCon[@"och5_JSContext"] = self;
+    jsCon[@"och5_HomeDir"] = [WZZOCH5Manager wwwDir];
+
+    [webView stringByEvaluatingJavaScriptFromString:
+     [NSString stringWithFormat:
+      @"var pchElement = document.createElement(\"script\");"
+      "pchElement.setAttribute(\"type\",\"text/javascript\");"
+      "pchElement.setAttribute(\"src\",\"%@/WZZOCH5Manager.js\");"
+      "document.head.insertBefore(pchElement, document.head.firstElementChild);", [WZZOCH5Manager wwwDir]
+      ]
+     ];
     
     NSArray * keysArr = _args.allKeys;
     for (int i = 0; i < keysArr.count; i++) {

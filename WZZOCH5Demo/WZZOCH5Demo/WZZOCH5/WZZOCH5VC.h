@@ -43,13 +43,6 @@
 //js回调oc接口，可以返回json字符串给oc，视情况而定
 - (void)returnJsonStr:(id)jsonStr;
 
-/**
- js回调js接口，js可以实现一个方法，在该方法里写回调函数
- 1.要求方法为无参方法
- 2.参数将会以JSContext的形式传递，在方法内部用obh5CallBack_xxx形式调用，xxx为传入ArgsDic的参数的键
- */
-- (void)callBackFunc:(NSString *)funcName ArgsDic:(id)dic;
-
 @end
 
 @interface WZZOCH5VC : UIViewController<WZZOCH5Delegate>
