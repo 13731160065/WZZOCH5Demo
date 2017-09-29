@@ -45,14 +45,14 @@ function OCH5_runFunc_context_funcName_2arg(context, funcName, arg1, arg2) {
 
 //界面跳转=================
 //push到H5页面
-function OCH5_pushVCWithUrl:(aUrl) {
+function OCH5_pushVCWithUrl(aUrl) {
  	var aVC = OCH5_allocWithClass("WZZOCH5VC");
  	OCH5_setValue_context_valueName_value(aVC, "url", aUrl);
  	OCH5_pushViewController(aVC);
 }
 
 //present到H5界面
-function OCH5_presentVCWithUrl:(aUrl) {
+function OCH5_presentVCWithUrl(aUrl) {
  	var aVC = OCH5_allocWithClass("WZZOCH5VC");
  	OCH5_setValue_context_valueName_value(aVC, "url", aUrl);
  	OCH5_presentViewController(aVC);
