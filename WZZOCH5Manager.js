@@ -1,6 +1,12 @@
+//oc全局变量====================
 //JSContext
 function OCH5_JSContextFunc() {
 	return och5_JSContext;
+}
+
+//JSContext
+function OCH5_HomeDirFunc() {
+	return och5_HomeDir;
 }
 
 //类与变量====================
