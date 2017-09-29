@@ -61,42 +61,39 @@
 }
 
 //调用方法
-- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName {
-    __block BOOL isOK = NO;
+- (id)runFuncWithObj:(id)obj FuncName:(NSString *)funcName {
+    __block id returnObj = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
         SEL func = NSSelectorFromString(funcName);
         if ([obj respondsToSelector:func]) {
-            [obj performSelector:func];//这个警告不用管
-            isOK = YES;
+            returnObj = [obj performSelector:func];//这个警告不用管
         }
     });
-    return isOK;
+    return returnObj;
 }
 
 //调用方法1个参数
-- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 {
-    __block BOOL isOK = NO;
+- (id)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 {
+    __block id returnObj = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
         SEL func = NSSelectorFromString(funcName);
         if ([obj respondsToSelector:func]) {
-            [obj performSelector:func withObject:arg1];//这个警告不用管
-            isOK = YES;
+            returnObj = [obj performSelector:func withObject:arg1];//这个警告不用管
         }
     });
-    return isOK;
+    return returnObj;
 }
 
 //调用方法2个参数
-- (BOOL)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
-    __block BOOL isOK = NO;
+- (id)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
+    __block id returnObj = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
         SEL func = NSSelectorFromString(funcName);
         if ([obj respondsToSelector:func]) {
-            [obj performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
+            returnObj = [obj performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
         }
-        isOK = YES;
     });
-    return isOK;
+    return returnObj;
 }
 
 //js获取变量
@@ -167,7 +164,7 @@
 #pragma mark - webview代理
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     JSContext * jsCon = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    jsCon[@"och5_jsContext"] = self;
+    jsCon[@"och5_JSContext"] = self;
     
     NSArray * keysArr = _args.allKeys;
     for (int i = 0; i < keysArr.count; i++) {
