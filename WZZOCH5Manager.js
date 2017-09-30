@@ -12,7 +12,7 @@ function OCH5_HomeDirFunc() {
 //类与变量====================
 //创建oc类
 function OCH5_allocWithClass(className) {
-	och5_JSContext.allocWithClass(className);
+	return och5_JSContext.allocWithClass(className);
 }
 
 //获取oc对象变量
@@ -46,7 +46,7 @@ function OCH5_runFunc_context_funcName_2arg(context, funcName, arg1, arg2) {
 //界面跳转=================
 //push到H5页面
 function OCH5_pushVCWithUrl(aUrl) {
- 	var aVC = OCH5_allocWithClass("WZZOCH5VC");
+    var aVC = OCH5_allocWithClass("WZZOCH5VC");
  	OCH5_setValue_context_valueName_value(aVC, "url", aUrl);
  	OCH5_pushViewController(aVC);
 }
@@ -88,4 +88,3 @@ function OCH5_returnJsonStr(aString) {
 function OCH5_returnObject(aObject) {
 	return och5_JSContext.returnJsonStr(aString);
 }
-
