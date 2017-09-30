@@ -9,6 +9,11 @@ function OCH5_HomeDirFunc() {
 	return och5_HomeDir;
 }
 
+//LoginObject
+function OCH5_LoginObjectFunc() {
+	return och5_LoginObject;
+}
+
 //类与变量====================
 //创建oc类
 function OCH5_allocWithClass(className) {
