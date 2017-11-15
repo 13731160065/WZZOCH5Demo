@@ -47,6 +47,10 @@ function OCH5_runFunc_context_funcName_2arg(context, funcName, arg1, arg2) {
     return och5_JSContext.runFuncWithObjFuncNameArg1Arg2(context, funcName, arg1, arg2);
 }
 
+//刷新url
+function OCH5_reloadUrl(aUrl) {
+    reloadWithUrl(aUrl);
+}
 
 //界面跳转=================
 //push到H5页面
