@@ -59,7 +59,9 @@
         str = [[str componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
         str = [[WZZOCH5Manager wwwDir] stringByAppendingFormat:@"/%@", str];
     }
-    [mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0f]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0f]];
+    });
 }
 
 //js回调oc block
