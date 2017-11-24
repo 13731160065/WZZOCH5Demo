@@ -42,7 +42,7 @@
     [mainWebView setScalesPageToFit:YES];
     [mainWebView setDelegate:self];
     if ([_url hasPrefix:@"wzzoch5://"]) {
-//        _url = [[_url componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
+        //        _url = [[_url componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
         _url = @"/test1/test.html";
         _url = [[WZZOCH5Manager wwwDir] stringByAppendingFormat:@"/%@", _url];
     }
@@ -54,7 +54,7 @@
     [mainWebView loadRequest:[NSURLRequest requestWithURL:urlObj cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0f]];
 }
 
-//刷新页面 
+//刷新页面
 - (void)reloadWithUrl:(NSString *)str {
     if ([str hasPrefix:@"wzzoch5://"]) {
         str = [[str componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
@@ -137,9 +137,9 @@
 //push界面
 - (void)pushVC:(id)vc {
     dispatch_async(dispatch_get_main_queue(), ^{
-//        [vc handleJSCallBack:^(id resp) {
-//            [mainWebView stringByEvaluatingJavaScriptFromString:@""];
-//        }];
+        //        [vc handleJSCallBack:^(id resp) {
+        //            [mainWebView stringByEvaluatingJavaScriptFromString:@""];
+        //        }];
         [self.navigationController pushViewController:vc animated:YES];
     });
 }
@@ -204,12 +204,13 @@
      ];
     [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@
                                                      "try {"
-                                                         "if (typeof viewDidLoad == \"function\") {"
-                                                             "setTimeout('viewDidLoad()', 100);"//这里必须用延时来处理
-                                                         "}"
+                                                     "if (typeof viewDidLoad == \"function\") {"
+                                                     "setTimeout('viewDidLoad()', 100);"//这里必须用延时来处理
+                                                     "}"
                                                      "} catch(exp) {"
                                                      "}"
                                                      ]];
 }
 
 @end
+

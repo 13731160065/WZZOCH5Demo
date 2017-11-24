@@ -51,7 +51,7 @@ static WZZOCH5Manager * wzzOCH5Manager;
     if (![fileManager isExecutableFileAtPath:[NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir]]) {
         [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir] withIntermediateDirectories:NO attributes:nil error:nil];
     }
-
+    
     //用下载文件创建zip
     [fileManager createFileAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] contents:data attributes:nil];
     
@@ -83,3 +83,4 @@ static WZZOCH5Manager * wzzOCH5Manager;
 }
 
 @end
+
