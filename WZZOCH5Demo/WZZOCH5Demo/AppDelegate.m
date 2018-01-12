@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "WZZOCH5Commander.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [WZZOCH5Commander shareInstance];
+    
     return YES;
 }
 

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7184A5EF1F7AC84400B48B15 /* WZZTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7184A5EE1F7AC84400B48B15 /* WZZTestModel.m */; };
+		C51B07D6200760A600774733 /* UIViewController+WZZH5ViewDidLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = C51B07D5200760A600774733 /* UIViewController+WZZH5ViewDidLoad.m */; };
+		C51B07DA20076AC300774733 /* WZZOCH5Commander.m in Sources */ = {isa = PBXBuildFile; fileRef = C51B07D920076AC300774733 /* WZZOCH5Commander.m */; };
+		C5696E96200893BA004D3513 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5696E94200893BA004D3513 /* TestVC.m */; };
+		C5696E97200893BA004D3513 /* TestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5696E95200893BA004D3513 /* TestVC.xib */; };
 		C58609441F79F16C0028C128 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609431F79F16C0028C128 /* main.m */; };
 		C58609471F79F16C0028C128 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609461F79F16C0028C128 /* AppDelegate.m */; };
 		C586094A1F79F16C0028C128 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609491F79F16C0028C128 /* ViewController.m */; };
@@ -71,6 +75,14 @@
 /* Begin PBXFileReference section */
 		7184A5ED1F7AC84400B48B15 /* WZZTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZZTestModel.h; sourceTree = "<group>"; };
 		7184A5EE1F7AC84400B48B15 /* WZZTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZZTestModel.m; sourceTree = "<group>"; };
+		C51B07D4200760A600774733 /* UIViewController+WZZH5ViewDidLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WZZH5ViewDidLoad.h"; sourceTree = "<group>"; };
+		C51B07D5200760A600774733 /* UIViewController+WZZH5ViewDidLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WZZH5ViewDidLoad.m"; sourceTree = "<group>"; };
+		C51B07D72007682100774733 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C51B07D820076AC300774733 /* WZZOCH5Commander.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZZOCH5Commander.h; sourceTree = "<group>"; };
+		C51B07D920076AC300774733 /* WZZOCH5Commander.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZZOCH5Commander.m; sourceTree = "<group>"; };
+		C5696E93200893BA004D3513 /* TestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
+		C5696E94200893BA004D3513 /* TestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
+		C5696E95200893BA004D3513 /* TestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestVC.xib; sourceTree = "<group>"; };
 		C586093F1F79F16C0028C128 /* WZZOCH5Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WZZOCH5Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58609431F79F16C0028C128 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C58609451F79F16C0028C128 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -189,6 +201,9 @@
 				7184A5EE1F7AC84400B48B15 /* WZZTestModel.m */,
 				C58609481F79F16C0028C128 /* ViewController.h */,
 				C58609491F79F16C0028C128 /* ViewController.m */,
+				C5696E93200893BA004D3513 /* TestVC.h */,
+				C5696E94200893BA004D3513 /* TestVC.m */,
+				C5696E95200893BA004D3513 /* TestVC.xib */,
 				C5BAE3A31F7A629A00AE17A1 /* Main.storyboard */,
 				C586094E1F79F16C0028C128 /* Assets.xcassets */,
 				C58609501F79F16C0028C128 /* LaunchScreen.storyboard */,
@@ -202,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				C58609431F79F16C0028C128 /* main.m */,
+				C51B07D72007682100774733 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -232,6 +248,10 @@
 				C586097A1F79F2370028C128 /* WZZOCH5VC.m */,
 				C586097C1F7A000F0028C128 /* WZZOCH5Manager.h */,
 				C586097D1F7A000F0028C128 /* WZZOCH5Manager.m */,
+				C51B07D820076AC300774733 /* WZZOCH5Commander.h */,
+				C51B07D920076AC300774733 /* WZZOCH5Commander.m */,
+				C51B07D4200760A600774733 /* UIViewController+WZZH5ViewDidLoad.h */,
+				C51B07D5200760A600774733 /* UIViewController+WZZH5ViewDidLoad.m */,
 			);
 			path = WZZOCH5;
 			sourceTree = "<group>";
@@ -413,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5696E97200893BA004D3513 /* TestVC.xib in Resources */,
 				C5BAE3A41F7A629A00AE17A1 /* Main.storyboard in Resources */,
 				C58609521F79F16C0028C128 /* LaunchScreen.storyboard in Resources */,
 				C586094F1F79F16C0028C128 /* Assets.xcassets in Resources */,
@@ -442,6 +463,7 @@
 			files = (
 				C5CC2FEF1F7A3F4000AB64F0 /* ioapi_mem.c in Sources */,
 				C586094A1F79F16C0028C128 /* ViewController.m in Sources */,
+				C51B07D6200760A600774733 /* UIViewController+WZZH5ViewDidLoad.m in Sources */,
 				C586097B1F79F2370028C128 /* WZZOCH5VC.m in Sources */,
 				C586097E1F7A000F0028C128 /* WZZOCH5Manager.m in Sources */,
 				C5CC2FE51F7A3F4000AB64F0 /* aeskey.c in Sources */,
@@ -451,6 +473,8 @@
 				C5CC2FE81F7A3F4000AB64F0 /* hmac.c in Sources */,
 				C5CC2FF01F7A3F4000AB64F0 /* minishared.c in Sources */,
 				C5CC2FF31F7A3F4000AB64F0 /* SSZipArchive.m in Sources */,
+				C5696E96200893BA004D3513 /* TestVC.m in Sources */,
+				C51B07DA20076AC300774733 /* WZZOCH5Commander.m in Sources */,
 				C5CC2FE91F7A3F4000AB64F0 /* prng.c in Sources */,
 				C5CC2FEA1F7A3F4000AB64F0 /* pwd2key.c in Sources */,
 				C5CC2FEE1F7A3F4000AB64F0 /* ioapi_buf.c in Sources */,

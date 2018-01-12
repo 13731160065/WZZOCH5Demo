@@ -11,6 +11,8 @@
 
 @protocol WZZOCH5Delegate <JSExport>
 
+- (void)makeLog:(id)log;
+
 #pragma mark - 类与变量
 //创建类
 - (id)allocWithClass:(NSString *)className;

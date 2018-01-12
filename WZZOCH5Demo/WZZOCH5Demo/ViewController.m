@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "WZZOCH5Manager.h"
 #import "WZZOCH5VC.h"
+#import "TestVC.h"
 
 @interface ViewController ()
 
@@ -27,8 +28,12 @@
 }
 
 - (IBAction)gotoVC:(id)sender {
+#if 0
     WZZOCH5VC * vc = [[WZZOCH5VC alloc] init];
     vc.url = @"wzzoch5://test1/test.html";
+    [self.navigationController pushViewController:vc animated:YES];
+#endif
+    TestVC * vc = [[TestVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -39,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"home:%@", NSHomeDirectory());
 }
 
 @end
