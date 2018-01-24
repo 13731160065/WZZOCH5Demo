@@ -11,6 +11,8 @@
 #import "WZZOCH5Commander.h"
 #import "TestVC.h"
 
+const void * tmpArgKey = &tmpArgKey;
+
 @implementation UIViewController (WZZH5ViewDidLoad)
 
 + (void)load {
@@ -199,12 +201,17 @@
                     }
                     
                     NSLog(@"参数:%@", argArr);
+                    objc_setAssociatedObject(self, tmpArgKey, argArr, OBJC_ASSOCIATION_RETAIN);
+                    
+                    //在此处调用js
                     
                     return NULL;
                 };
                 IMP m = imp_implementationWithBlock(aBlock);
                 SEL selll = NSSelectorFromString(orgFunc);
                 class_replaceMethod([self class], selll, m, orgFunc.UTF8String);
+                
+                
             }
         } @catch (NSException *exception) {
             NSLog(@"换方法异常:%@", exception);
@@ -212,6 +219,10 @@
     }
     
     [self ex_viewDidLoad];
+}
+
+- (NSArray *)tmpArgsArr {
+    return objc_getAssociatedObject(self, tmpArgKey);
 }
 
 @end

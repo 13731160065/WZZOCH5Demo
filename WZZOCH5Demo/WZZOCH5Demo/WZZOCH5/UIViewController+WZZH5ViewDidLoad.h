@@ -10,4 +10,12 @@
 
 @interface UIViewController (WZZH5ViewDidLoad)
 
+/**
+ js获取oc方法入参
+ 参数只能为对象、字符、整数、布尔、指针
+ 
+ @return 入参数组
+ */
+- (NSArray *)tmpArgsArr;
+
 @end
