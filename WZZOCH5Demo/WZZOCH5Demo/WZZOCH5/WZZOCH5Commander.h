@@ -46,15 +46,12 @@
  */
 - (void)setReplaceMethodArray:(NSArray *)array;
 
-- (void)creatModelWithClassName:(NSString *)className
-                       FuncName:(NSString *)funcName
-                      FuncBlock:(id)funcBlock;
+- (id)creatBlockWithClassName:(NSString *)className
+                       FuncName:(NSString *)funcName;
 
 #pragma mark - 回调函数
 //js回调oc接口，可以返回json字符串给oc，视情况而定
 - (void)returnJsonStr:(id)jsonStr;
-
-- (void)handleBlock:(JSValue *)aBlock;
 
 @end
 

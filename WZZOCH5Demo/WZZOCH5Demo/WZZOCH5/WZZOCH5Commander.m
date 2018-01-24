@@ -161,6 +161,20 @@ static WZZOCH5Commander * wzzOCH5Commander;
     }
 }
 
+//MARK:创建block
+- (id)createBlockWith {
+    id aBlock = ^() {
+        [mainWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@
+                                                             "try {"
+                                                             "if (typeof viewDidLoad == \"function\") {"
+                                                             "}"
+                                                             "} catch(exp) {"
+                                                             "}"
+                                                             ]];
+    };
+    return aBlock;
+}
+
 #pragma mark - webview代理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     JSContext * jsCon = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "WZZOCH5Commander.h"
+#import "WZZTestModel.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [WZZOCH5Commander shareInstance];
-    
+    NSLog(@">>>>>%@", NSHomeDirectory());
     return YES;
 }
 
