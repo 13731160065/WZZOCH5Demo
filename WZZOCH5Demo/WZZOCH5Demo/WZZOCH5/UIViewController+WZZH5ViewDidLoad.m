@@ -103,7 +103,7 @@ const void * tmpArgKey = &tmpArgKey;
     //获取需要覆盖的方法
     NSArray * arr = [[WZZOCH5Commander shareInstance] replaceMethodArray];
     
-#if 1
+#if 0
     //测试数据
     WZZOCH5CommanderReplaceMethonModel * mo = [[WZZOCH5CommanderReplaceMethonModel alloc] init];
     mo.classname = @"TestVC";
@@ -205,7 +205,7 @@ const void * tmpArgKey = &tmpArgKey;
                     objc_setAssociatedObject(self, tmpArgKey, argArr, OBJC_ASSOCIATION_RETAIN);
                     
                     //在此处调用js
-                    [[WZZOCH5Commander shareInstance] runJSFunc:mo.objchangemethod];
+                    [[WZZOCH5Commander shareInstance] runJSFunc:model.objchangemethod];
                     
                     return NULL;
                 };
