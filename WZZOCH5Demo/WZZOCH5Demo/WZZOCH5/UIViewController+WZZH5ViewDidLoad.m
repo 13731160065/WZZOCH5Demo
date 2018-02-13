@@ -100,6 +100,7 @@ const void * tmpArgKey = &tmpArgKey;
 }
 
 - (void)ex_viewDidLoad {
+    [WZZOCH5Commander shareInstance].currentController = self;
     //获取需要覆盖的方法
     NSArray * arr = [[WZZOCH5Commander shareInstance] replaceMethodArray];
     
