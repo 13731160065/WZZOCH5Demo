@@ -13,7 +13,7 @@
 
 static WZZOCH5Commander * wzzOCH5Commander;
 
-@interface WZZOCH5Commander ()<UIWebViewDelegate>
+@interface WZZOCH5Commander ()<UIWebViewDelegate, WZZOCH5CommanderDelegate>
 {
     UIWebView * mainWebView;
     void(^_handleJSBlock)(id);
@@ -58,8 +58,20 @@ static WZZOCH5Commander * wzzOCH5Commander;
     return self;
 }
 
+//返回替换方法数组
 - (NSArray *)replaceMethodArray {
     return replaceArr;
+}
+
+//调用js方法
+- (void)runJSFunc:(NSString *)jsfunc {
+    [mainWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@
+                                                         "try {"
+                                                          "if (typeof %@ == \"function\") {"
+                                                           "%@();"
+                                                          "}"
+                                                         "} catch(exp) {"
+                                                         "}", jsfunc, jsfunc]];
 }
 
 #pragma mark - js代理
@@ -159,20 +171,6 @@ static WZZOCH5Commander * wzzOCH5Commander;
     if (_handleJSBlock) {
         _handleJSBlock(jsonStr);
     }
-}
-
-//MARK:创建block
-- (id)createBlockWith {
-    id aBlock = ^() {
-        [mainWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@
-                                                             "try {"
-                                                             "if (typeof viewDidLoad == \"function\") {"
-                                                             "}"
-                                                             "} catch(exp) {"
-                                                             "}"
-                                                             ]];
-    };
-    return aBlock;
 }
 
 #pragma mark - webview代理

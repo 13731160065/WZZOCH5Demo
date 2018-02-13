@@ -46,9 +46,6 @@
  */
 - (void)setReplaceMethodArray:(NSArray *)array;
 
-- (id)creatBlockWithClassName:(NSString *)className
-                       FuncName:(NSString *)funcName;
-
 #pragma mark - 回调函数
 //js回调oc接口，可以返回json字符串给oc，视情况而定
 - (void)returnJsonStr:(id)jsonStr;
@@ -79,7 +76,12 @@
  */
 - (NSArray *)replaceMethodArray;
 
-
+/**
+ 调用js方法
+ 
+ @param jsfunc js方法名
+ */
+- (void)runJSFunc:(NSString *)jsfunc;
 
 @end
 
@@ -96,8 +98,8 @@
 @property (nonatomic, strong) NSString * objmethod;
 
 /**
- 对象方法实现block
+ 对象方法替换实现
  */
-@property (nonatomic, strong) JSValue * objmethodblock;
+@property (nonatomic, strong) NSString * objchangemethod;
 
 @end

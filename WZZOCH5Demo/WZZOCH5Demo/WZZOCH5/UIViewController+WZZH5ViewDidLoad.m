@@ -109,6 +109,7 @@ const void * tmpArgKey = &tmpArgKey;
     mo.classname = @"TestVC";
 //    mo.objmethod = @"abc:b:c:d:e:f:";
     mo.objmethod = @"abc";
+    mo.objchangemethod = @"abc";
     arr = @[mo];
 #endif
     
@@ -204,14 +205,13 @@ const void * tmpArgKey = &tmpArgKey;
                     objc_setAssociatedObject(self, tmpArgKey, argArr, OBJC_ASSOCIATION_RETAIN);
                     
                     //在此处调用js
+                    [[WZZOCH5Commander shareInstance] runJSFunc:mo.objchangemethod];
                     
                     return NULL;
                 };
                 IMP m = imp_implementationWithBlock(aBlock);
                 SEL selll = NSSelectorFromString(orgFunc);
                 class_replaceMethod([self class], selll, m, orgFunc.UTF8String);
-                
-                
             }
         } @catch (NSException *exception) {
             NSLog(@"换方法异常:%@", exception);
