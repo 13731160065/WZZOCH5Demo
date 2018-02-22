@@ -22,8 +22,16 @@
 //下载
 - (IBAction)downloadClick:(id)sender {
     NSLog(@"%@", NSHomeDirectory());
-    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text]]];
-    [WZZOCH5Manager unzipToBundleWithData:data];
+//    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text]]];
+//    [WZZOCH5Manager unzipToBundleWithData:data];
+    NSString * str = [NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text];
+    [[WZZOCH5Manager shareInstance] downloadWithUrl:str progress:^(double progress) {
+        
+    } successBlock:^(NSURL *filePath) {
+        [WZZOCH5Manager unzipToBundleWithFileUrl:filePath];
+    } failedBlock:^(NSError *error) {
+        
+    }];
     NSLog(@"ok");
 }
 

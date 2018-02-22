@@ -14,8 +14,17 @@
 
 static WZZOCH5Manager * wzzOCH5Manager;
 
+@interface WZZOCH5Manager ()<NSURLSessionDownloadDelegate>
+{
+    NSURLSession * m_downloadSession;//下载会话
+    NSURLSessionDownloadTask * m_downloadTask;//下载任务
+}
+
+@end
+
 @implementation WZZOCH5Manager
 
+//根地址
 + (NSString *)wwwDir {
     //返回正确的地址
     if ([[NSFileManager defaultManager] isExecutableFileAtPath:[NSString stringWithFormat:@"%@/%@/%@_2", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName]]) {
@@ -26,6 +35,7 @@ static WZZOCH5Manager * wzzOCH5Manager;
     return nil;
 }
 
+//单例
 + (instancetype)shareInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -34,6 +44,7 @@ static WZZOCH5Manager * wzzOCH5Manager;
     return wzzOCH5Manager;
 }
 
+//获取版本信息
 + (NSString *)getVersion {
     NSString * homeStr = [self wwwDir];
     if (homeStr) {
@@ -45,7 +56,44 @@ static WZZOCH5Manager * wzzOCH5Manager;
     }
 }
 
-+ (void)unzipToBundleWithData:(NSData *)data {
+//下载
+- (void)downloadWithUrl:(NSString *)url
+               progress:(void (^)(double))progress
+           successBlock:(void (^)(NSURL *))successBlock
+            failedBlock:(void (^)(NSError *))failedBlock {
+    NSURLSessionConfiguration * conf = [NSURLSessionConfiguration defaultSessionConfiguration];
+    m_downloadSession = [NSURLSession sessionWithConfiguration:conf delegate:self delegateQueue:nil];
+    m_downloadTask = [m_downloadSession downloadTaskWithURL:[NSURL URLWithString:url]];
+#if 0
+    m_downloadTask = [m_downloadSession downloadTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            if (failedBlock) {
+                failedBlock(error);
+            }
+        } else {
+            if (successBlock) {
+                successBlock(location);
+            }
+        }
+    }];
+#endif
+    [m_downloadTask resume];
+}
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    NSLog(@"写入数据, 总数据:%lld, 已写入%lld, 需要写:%lld", totalBytesWritten, bytesWritten, totalBytesExpectedToWrite);
+}
+
+- (void)URLSession:(nonnull NSURLSession *)session downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(nonnull NSURL *)location {
+    
+}
+
+
++ (void)unzipToBundleWithFileUrl:(NSURL *)fileUrl {
     NSFileManager * fileManager = [NSFileManager defaultManager];
     //如果没有这个文件夹就创建
     if (![fileManager isExecutableFileAtPath:[NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), WZZOCH5Manager_unzipDir]]) {
@@ -53,7 +101,8 @@ static WZZOCH5Manager * wzzOCH5Manager;
     }
     
     //用下载文件创建zip
-    [fileManager createFileAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] contents:data attributes:nil];
+    NSURL * targetUrl = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName]];
+    [fileManager moveItemAtURL:fileUrl toURL:targetUrl error:nil];
     
     //解压缩成文件夹_2
     BOOL unzipOK = [SSZipArchive unzipFileAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] toDestination:[NSString stringWithFormat:@"%@/%@/%@_3", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName]];
@@ -80,6 +129,16 @@ static WZZOCH5Manager * wzzOCH5Manager;
     
     //移除zip包
     [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
+}
+
+//解压
++ (void)unzipToBundleWithData:(NSData *)data {
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    //用下载文件创建zip
+    NSString * fileUrl = [NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), @"tmp", WZZOCH5Manager_unzipName];
+    [fileManager removeItemAtPath:fileUrl error:nil];
+    [fileManager createFileAtPath:fileUrl contents:data attributes:nil];
+    [self unzipToBundleWithFileUrl:[NSURL fileURLWithPath:fileUrl]];
 }
 
 @end
