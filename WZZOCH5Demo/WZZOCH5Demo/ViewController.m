@@ -25,6 +25,7 @@
 //    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text]]];
 //    [WZZOCH5Manager unzipToBundleWithData:data];
     NSString * str = [NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text];
+    str = @"http://m5.pc6.com/cjh5/BlueStacks.dmg";
     [[WZZOCH5Manager shareInstance] downloadWithUrl:str progress:^(double progress) {
         
     } successBlock:^(NSURL *filePath) {

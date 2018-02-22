@@ -64,19 +64,6 @@ static WZZOCH5Manager * wzzOCH5Manager;
     NSURLSessionConfiguration * conf = [NSURLSessionConfiguration defaultSessionConfiguration];
     m_downloadSession = [NSURLSession sessionWithConfiguration:conf delegate:self delegateQueue:nil];
     m_downloadTask = [m_downloadSession downloadTaskWithURL:[NSURL URLWithString:url]];
-#if 0
-    m_downloadTask = [m_downloadSession downloadTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            if (failedBlock) {
-                failedBlock(error);
-            }
-        } else {
-            if (successBlock) {
-                successBlock(location);
-            }
-        }
-    }];
-#endif
     [m_downloadTask resume];
 }
 
@@ -85,7 +72,9 @@ static WZZOCH5Manager * wzzOCH5Manager;
       didWriteData:(int64_t)bytesWritten
  totalBytesWritten:(int64_t)totalBytesWritten
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-    NSLog(@"写入数据, 总数据:%lld, 已写入%lld, 需要写:%lld", totalBytesWritten, bytesWritten, totalBytesExpectedToWrite);
+    NSLog(@"写入数据, 总写入:%lld, 本次写入:%lld, 总共:%lld", totalBytesWritten, bytesWritten, totalBytesExpectedToWrite);
+    double progress = (double)totalBytesWritten/(double)totalBytesExpectedToWrite;
+    NSLog(@"进度:%lg%%", progress*100);
 }
 
 - (void)URLSession:(nonnull NSURLSession *)session downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(nonnull NSURL *)location {
