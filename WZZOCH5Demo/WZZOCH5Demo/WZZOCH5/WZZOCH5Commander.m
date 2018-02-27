@@ -70,6 +70,7 @@ static WZZOCH5Commander * wzzOCH5Commander;
     if (!urlObj) {
         urlObj = [NSURL URLWithString:[_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
+    [mainWebView loadRequest:[NSURLRequest requestWithURL:urlObj cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0f]];
 }
 
 //返回替换方法数组
@@ -177,6 +178,7 @@ static WZZOCH5Commander * wzzOCH5Commander;
 
 //MARK:设置替换方法数组
 - (void)setReplaceMethodArray:(NSArray *)array {
+    [replaceArr removeAllObjects];
     [replaceArr addObjectsFromArray:array];
 }
 
