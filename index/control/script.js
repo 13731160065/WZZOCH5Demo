@@ -5,7 +5,7 @@ function viewDidLoad() {
         var array = new Array();
         
         //创建要修改的数据
-        var tvc_ocabc = OCH5_createReplaceFunc("TestVC", "abc:b:c:d:e:f:", "ocabc");
+        var tvc_ocabc = OCH5_createReplaceFunc("TestVC", "abc:b:c:d:e:f:", "ocbbc");
         
         array[0] = tvc_ocabc;
         
@@ -15,9 +15,11 @@ function viewDidLoad() {
     }
 }
 
+function ocbbc() {
+    alert("bbc");
+}
+
 function ocabc() {
-    alert("abc");
-    /*
     //self
     var self = OCH5_getValue_context_value(och5_JSContext, "currentController");
     alert(self);
@@ -33,5 +35,4 @@ function ocabc() {
     OCH5_log(self_view_frame);
     //aView.frame = CGRectMake(0, 0, 100, 100);
 //    OCH5_setValue_context_valueName_value(aView, "", "")
-     */
 }
