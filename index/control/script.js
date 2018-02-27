@@ -11,7 +11,7 @@ function viewDidLoad() {
         
         OCH5_setReplaceMethodArray(array);
     } catch(exp) {
-        alert(exp);
+        alert("异常:"+exp);
     }
 }
 
