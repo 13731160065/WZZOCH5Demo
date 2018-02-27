@@ -70,6 +70,11 @@
 + (instancetype)shareInstance;
 
 /**
+ 刷新页面
+ */
+- (void)refresh;
+
+/**
  获取替换方法数组
 
  @return 替换方法数组

@@ -10,6 +10,7 @@
 		7184A5EF1F7AC84400B48B15 /* WZZTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7184A5EE1F7AC84400B48B15 /* WZZTestModel.m */; };
 		C51B07D6200760A600774733 /* UIViewController+WZZH5ViewDidLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = C51B07D5200760A600774733 /* UIViewController+WZZH5ViewDidLoad.m */; };
 		C51B07DA20076AC300774733 /* WZZOCH5Commander.m in Sources */ = {isa = PBXBuildFile; fileRef = C51B07D920076AC300774733 /* WZZOCH5Commander.m */; };
+		C5286264204515A100A6CC8C /* WZZHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C5286263204515A000A6CC8C /* WZZHttpTool.m */; };
 		C5696E96200893BA004D3513 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5696E94200893BA004D3513 /* TestVC.m */; };
 		C5696E97200893BA004D3513 /* TestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5696E95200893BA004D3513 /* TestVC.xib */; };
 		C58609441F79F16C0028C128 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C58609431F79F16C0028C128 /* main.m */; };
@@ -80,6 +81,8 @@
 		C51B07D72007682100774733 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C51B07D820076AC300774733 /* WZZOCH5Commander.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZZOCH5Commander.h; sourceTree = "<group>"; };
 		C51B07D920076AC300774733 /* WZZOCH5Commander.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZZOCH5Commander.m; sourceTree = "<group>"; };
+		C5286262204515A000A6CC8C /* WZZHttpTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZZHttpTool.h; sourceTree = "<group>"; };
+		C5286263204515A000A6CC8C /* WZZHttpTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZZHttpTool.m; sourceTree = "<group>"; };
 		C5696E93200893BA004D3513 /* TestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
 		C5696E94200893BA004D3513 /* TestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		C5696E95200893BA004D3513 /* TestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestVC.xib; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 		C58609411F79F16C0028C128 /* WZZOCH5Demo */ = {
 			isa = PBXGroup;
 			children = (
+				C5286262204515A000A6CC8C /* WZZHttpTool.h */,
+				C5286263204515A000A6CC8C /* WZZHttpTool.m */,
 				C58609781F79F2280028C128 /* WZZOCH5 */,
 				C58609451F79F16C0028C128 /* AppDelegate.h */,
 				C58609461F79F16C0028C128 /* AppDelegate.m */,
@@ -487,6 +492,7 @@
 				C5CC2FF21F7A3F4000AB64F0 /* zip.c in Sources */,
 				C5CC2FE71F7A3F4000AB64F0 /* fileenc.c in Sources */,
 				C58609441F79F16C0028C128 /* main.m in Sources */,
+				C5286264204515A100A6CC8C /* WZZHttpTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

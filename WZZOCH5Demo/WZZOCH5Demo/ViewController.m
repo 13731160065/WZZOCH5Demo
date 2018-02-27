@@ -10,6 +10,7 @@
 #import "WZZOCH5Manager.h"
 #import "WZZOCH5VC.h"
 #import "TestVC.h"
+#import "WZZHttpTool.h"
 
 @interface ViewController ()
 
@@ -22,18 +23,21 @@
 //下载
 - (IBAction)downloadClick:(id)sender {
     NSLog(@"%@", NSHomeDirectory());
-//    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text]]];
-//    [WZZOCH5Manager unzipToBundleWithData:data];
     NSString * str = [NSString stringWithFormat:@"https://github.com/13731160065/tmp/raw/master/%@.zip", [_tf.text isEqualToString:@""]?@"index":_tf.text];
-    str = @"http://m5.pc6.com/cjh5/BlueStacks.dmg";
-    [[WZZOCH5Manager shareInstance] downloadWithUrl:str progress:^(double progress) {
-        
-    } successBlock:^(NSURL *filePath) {
-        [WZZOCH5Manager unzipToBundleWithFileUrl:filePath];
-    } failedBlock:^(NSError *error) {
-        
+    if ([_tf.text isEqualToString:@""]) {
+        str = @"https://github.com/13731160065/WZZOCH5Demo/raw/master/index.zip";
+    }
+    __weak WZZDownloadTaskModel * model = [WZZHttpTool downloadWithUrl:str];
+    [model setProgressBlock:^(NSNumber *progress) {
+        NSLog(@"%.2lf", progress.doubleValue*100);
     }];
-    NSLog(@"ok");
+    [model setDownloadCompleteBlock:^(NSURL *location, NSError *error) {
+        NSLog(@"下载成功");
+        NSString * str2 = [NSString stringWithFormat:@"%@/Documents/%@.zip", NSHomeDirectory(), model.taskId];
+        NSURL * fileUrl = [NSURL fileURLWithPath:str2];
+        [[NSFileManager defaultManager] moveItemAtURL:location toURL:fileUrl error:nil];
+        [WZZOCH5Manager unzipToBundleWithFileUrl:fileUrl];
+    }];
 }
 
 - (IBAction)gotoVC:(id)sender {

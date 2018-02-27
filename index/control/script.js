@@ -16,7 +16,8 @@ function viewDidLoad() {
 }
 
 function ocabc() {
-//    alert("abc");
+    alert("abc");
+    /*
     //self
     var self = OCH5_getValue_context_value(och5_JSContext, "currentController");
     alert(self);
@@ -32,4 +33,5 @@ function ocabc() {
     OCH5_log(self_view_frame);
     //aView.frame = CGRectMake(0, 0, 100, 100);
 //    OCH5_setValue_context_valueName_value(aView, "", "")
+     */
 }

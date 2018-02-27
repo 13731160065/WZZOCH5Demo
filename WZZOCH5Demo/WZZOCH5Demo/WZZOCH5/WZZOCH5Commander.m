@@ -58,6 +58,20 @@ static WZZOCH5Commander * wzzOCH5Commander;
     return self;
 }
 
+//刷新
+- (void)refresh {
+    NSString * _url = @"wzzoch5://control/control.html";
+    if ([_url hasPrefix:@"wzzoch5://"]) {
+        _url = [[_url componentsSeparatedByString:@"wzzoch5://"] componentsJoinedByString:@""];
+        _url = [[WZZOCH5Manager wwwDir] stringByAppendingFormat:@"/%@", _url];
+    }
+    
+    NSURL * urlObj = [NSURL URLWithString:_url];
+    if (!urlObj) {
+        urlObj = [NSURL URLWithString:[_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    }
+}
+
 //返回替换方法数组
 - (NSArray *)replaceMethodArray {
     return replaceArr;

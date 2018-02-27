@@ -8,13 +8,14 @@
 
 #import "WZZOCH5Manager.h"
 #import "ZipArchive.h"
+#import "WZZOCH5Commander.h"
 
 #define WZZOCH5Manager_unzipDir @"Documents/unzipDir"
 #define WZZOCH5Manager_unzipName @"www"
 
 static WZZOCH5Manager * wzzOCH5Manager;
 
-@interface WZZOCH5Manager ()<NSURLSessionDownloadDelegate>
+@interface WZZOCH5Manager ()
 {
     NSURLSession * m_downloadSession;//下载会话
     NSURLSessionDownloadTask * m_downloadTask;//下载任务
@@ -56,32 +57,6 @@ static WZZOCH5Manager * wzzOCH5Manager;
     }
 }
 
-//下载
-- (void)downloadWithUrl:(NSString *)url
-               progress:(void (^)(double))progress
-           successBlock:(void (^)(NSURL *))successBlock
-            failedBlock:(void (^)(NSError *))failedBlock {
-    NSURLSessionConfiguration * conf = [NSURLSessionConfiguration defaultSessionConfiguration];
-    m_downloadSession = [NSURLSession sessionWithConfiguration:conf delegate:self delegateQueue:nil];
-    m_downloadTask = [m_downloadSession downloadTaskWithURL:[NSURL URLWithString:url]];
-    [m_downloadTask resume];
-}
-
-- (void)URLSession:(NSURLSession *)session
-      downloadTask:(NSURLSessionDownloadTask *)downloadTask
-      didWriteData:(int64_t)bytesWritten
- totalBytesWritten:(int64_t)totalBytesWritten
-totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-    NSLog(@"写入数据, 总写入:%lld, 本次写入:%lld, 总共:%lld", totalBytesWritten, bytesWritten, totalBytesExpectedToWrite);
-    double progress = (double)totalBytesWritten/(double)totalBytesExpectedToWrite;
-    NSLog(@"进度:%lg%%", progress*100);
-}
-
-- (void)URLSession:(nonnull NSURLSession *)session downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(nonnull NSURL *)location {
-    
-}
-
-
 + (void)unzipToBundleWithFileUrl:(NSURL *)fileUrl {
     NSFileManager * fileManager = [NSFileManager defaultManager];
     //如果没有这个文件夹就创建
@@ -118,6 +93,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     
     //移除zip包
     [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@.zip", NSHomeDirectory(), WZZOCH5Manager_unzipDir, WZZOCH5Manager_unzipName] error:nil];
+    
+    NSLog(@"刷新包");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[WZZOCH5Commander shareInstance] refresh];
+    });
 }
 
 //解压
