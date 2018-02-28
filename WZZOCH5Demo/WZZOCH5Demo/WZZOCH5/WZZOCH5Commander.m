@@ -212,7 +212,7 @@ static WZZOCH5Commander * wzzOCH5Commander;
 
 //MARK:js给变量赋值
 - (void)setObjWithKeyPath:(NSString *)keyPath Value:(id)value Obj:(id)obj {
-    return [obj setValue:value forKey:keyPath];
+    [obj setValue:value forKeyPath:keyPath];
 }
 
 //MARK:设置替换方法数组

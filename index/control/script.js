@@ -42,7 +42,7 @@ function ocabc() {
         //[UIColor cyanColor]
         var bgColor = OCH5_runClassFunc_context_funcName("UIColor", "cyanColor");
         //[aView.backgroundColor:bgColor]
-        OCH5_setValue_context_valueName_value(aView, "backgroundColor:", bgColor);
+        OCH5_setValue_context_valueName_value(aView, "backgroundColor", bgColor);
         //aView.frame = CGRectMake(0, 0, 100, 100);
         //    OCH5_setValue_context_valueName_value(aView, "", "")
     } catch (exp) {
