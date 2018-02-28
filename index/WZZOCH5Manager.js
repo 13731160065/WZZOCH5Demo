@@ -49,6 +49,17 @@ function OCH5_runClassFunc_context_funcName_2arg(context, funcName, arg1, arg2) 
     return och5_JSContext.runFuncWithClassFuncNameArg1Arg2(context, funcName, arg1, arg2);
 }
 
+//空返回
+function OCH5_voidrunClassFunc_context_funcName(context, funcName) {
+    och5_JSContext.voidrunFuncWithClassFuncName(context, funcName);
+}
+function OCH5_voidrunClassFunc_context_funcName_1arg(context, funcName, arg1) {
+    och5_JSContext.voidrunFuncWithClassFuncNameArg1(context, funcName, arg1);
+}
+function OCH5_voidrunClassFunc_context_funcName_2arg(context, funcName, arg1, arg2) {
+    och5_JSContext.voidrunFuncWithClassFuncNameArg1Arg2(context, funcName, arg1, arg2);
+}
+
 //调用oc对象方法====================
 //调用oc方法，无参
 function OCH5_runFunc_context_funcName(context, funcName) {
@@ -63,6 +74,17 @@ function OCH5_runFunc_context_funcName_1arg(context, funcName, arg1) {
 //调用oc方法，2参
 function OCH5_runFunc_context_funcName_2arg(context, funcName, arg1, arg2) {
 	return och5_JSContext.runFuncWithObjFuncNameArg1Arg2(context, funcName, arg1, arg2);
+}
+
+//空返回
+function OCH5_voidrunFunc_context_funcName(context, funcName) {
+    och5_JSContext.voidrunFuncWithObjFuncName(context, funcName);
+}
+function OCH5_voidrunFunc_context_funcName_1arg(context, funcName, arg1) {
+    och5_JSContext.voidrunFuncWithObjFuncNameArg1(context, funcName, arg1);
+}
+function OCH5_voidrunFunc_context_funcName_2arg(context, funcName, arg1, arg2) {
+    och5_JSContext.voidrunFuncWithObjFuncNameArg1Arg2(context, funcName, arg1, arg2);
 }
 
 /**

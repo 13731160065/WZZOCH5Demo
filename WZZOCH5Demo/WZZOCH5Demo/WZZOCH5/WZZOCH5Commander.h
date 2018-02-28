@@ -22,11 +22,19 @@
 - (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName;
 - (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1;
 - (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
+//返回空的方法
+- (void)voidrunFuncWithClass:(Class)aClass FuncName:(NSString *)funcName;
+- (void)voidrunFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1;
+- (void)voidrunFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
 
 //调用对象方法
 - (id)runFuncWithObj:(id)obj FuncName:(NSString *)funcName;
 - (id)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1;
 - (id)runFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
+//调用对象方法
+- (void)voidrunFuncWithObj:(id)obj FuncName:(NSString *)funcName;
+- (void)voidrunFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1;
+- (void)voidrunFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
 
 //获取变量
 - (id)getObjWithKeyPath:(NSString *)keyPath Obj:(id)obj;

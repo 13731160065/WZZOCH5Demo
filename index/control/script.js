@@ -38,7 +38,7 @@ function ocabc() {
         var self_view_frame = OCH5_getValue_context_value(self_view, "frame");
         OCH5_log(self_view_frame);
         //[self.view addSubview:aView];
-        OCH5_runFunc_context_funcName_1arg(self_view, "addSubview:", aView);
+        OCH5_voidrunFunc_context_funcName_1arg(self_view, "addSubview:", aView);
         //aView.frame = CGRectMake(0, 0, 100, 100);
         //    OCH5_setValue_context_valueName_value(aView, "", "")
     } catch (exp) {
