@@ -67,11 +67,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAu-ME-o7o">
+                                <rect key="frame" x="0.0" y="186" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8IY-P6-he0"/>
+                                </constraints>
+                                <state key="normal" title="刷新"/>
+                                <connections>
+                                    <action selector="refreshClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Vp-3k-DTJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xAu-ME-o7o" secondAttribute="trailing" id="1wJ-4l-xz1"/>
                             <constraint firstItem="FFf-A1-zP5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BOV-fN-sRZ"/>
                             <constraint firstItem="twm-We-PMM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NPk-3x-wvW"/>
+                            <constraint firstItem="xAu-ME-o7o" firstAttribute="top" secondItem="twm-We-PMM" secondAttribute="bottom" constant="8" id="TnA-Ov-gO1"/>
+                            <constraint firstItem="xAu-ME-o7o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Uh8-xa-LqG"/>
                             <constraint firstItem="Lct-wC-Wwn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="dJS-nA-Wkg"/>
                             <constraint firstItem="twm-We-PMM" firstAttribute="top" secondItem="FFf-A1-zP5" secondAttribute="bottom" constant="8" id="m9U-jG-rcP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lct-wC-Wwn" secondAttribute="trailing" constant="8" id="mx9-dh-nYY"/>

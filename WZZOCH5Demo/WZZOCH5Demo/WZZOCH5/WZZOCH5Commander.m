@@ -191,12 +191,17 @@ static WZZOCH5Commander * wzzOCH5Commander;
 
 #pragma mark - webview代理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return YES;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     JSContext * jsCon = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     jsCon[@"och5_JSContext"] = self;
     jsCon[@"och5_HomeDir"] = [WZZOCH5Manager wwwDir];
-    jsCon[@"och5_viewDidLoad"] = ^{
-        NSLog(@"nono");
-    };
     
     NSArray * keysArr = _args.allKeys;
     for (int i = 0; i < keysArr.count; i++) {
@@ -210,14 +215,7 @@ static WZZOCH5Commander * wzzOCH5Commander;
         context.exception = exceptionValue;
         NSLog(@"异常信息：%@", exceptionValue);
     };
-    return YES;
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
     [webView stringByEvaluatingJavaScriptFromString:
      [NSString stringWithFormat:
       @"var pchElement = document.createElement(\"script\");"

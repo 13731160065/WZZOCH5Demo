@@ -16,8 +16,12 @@ function viewDidLoad() {
 }
 
 function ocbbc() {
-    var self = OCH5_getValue_context_value(och5_JSContext, "currentController");
-    alert(self);
+    try {
+        var self = OCH5_getValue_context_value(och5_JSContext, "currentController");
+        alert(self);
+    } catch(exp) {
+        alert("异常:"+exp);
+    }
 }
 
 function ocabc() {

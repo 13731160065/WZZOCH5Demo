@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "WZZOCH5Manager.h"
+#import "WZZOCH5Commander.h"
 #import "WZZOCH5VC.h"
 #import "TestVC.h"
 #import "WZZHttpTool.h"
@@ -48,6 +49,9 @@
 #endif
     TestVC * vc = [[TestVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)refreshClick:(id)sender {
+    [[WZZOCH5Commander shareInstance] refresh];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

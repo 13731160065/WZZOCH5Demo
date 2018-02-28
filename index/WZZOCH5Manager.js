@@ -24,7 +24,7 @@ function abc(abcc) {
 }
 
 //获取oc对象变量
-function OCH5_getValue_context_value(context, aValue) {
+function OCH5_getValue_context_value(context, valueName) {
 	return och5_JSContext.getObjWithKeyPathObj(valueName, context);
 }
 
