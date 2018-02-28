@@ -24,7 +24,7 @@
     [self abc:aa b:@(10) c:@"2" d:7 e:@(0) f:self];
 }
 - (void)abc {
-    
+    [self.view setBackgroundColor:[UIColor cyanColor]];
 }
 
 - (void)abc:(NSInteger)a b:(id)bb c:(NSString *)str d:(int)d e:(id)e f:(id)r {

@@ -19,13 +19,13 @@
 - (id)allocWithClass:(NSString *)className;
 
 //调用类方法
-- (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName;
-- (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1;
-- (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
+- (id)runFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName;
+- (id)runFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1;
+- (id)runFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
 //返回空的方法
-- (void)voidrunFuncWithClass:(Class)aClass FuncName:(NSString *)funcName;
-- (void)voidrunFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1;
-- (void)voidrunFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
+- (void)voidrunFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName;
+- (void)voidrunFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1;
+- (void)voidrunFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2;
 
 //调用对象方法
 - (id)runFuncWithObj:(id)obj FuncName:(NSString *)funcName;

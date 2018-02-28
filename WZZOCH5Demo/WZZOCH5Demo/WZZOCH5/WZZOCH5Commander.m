@@ -101,33 +101,42 @@ static WZZOCH5Commander * wzzOCH5Commander;
 }
 
 //MARK:调用类方法
-- (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName {
+- (id)runFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName {
     id returnObj = nil;
     SEL func = NSSelectorFromString(funcName);
-    if ([aClass respondsToSelector:func]) {
-        returnObj = [aClass performSelector:func];//这个警告不用管
-    }
+    returnObj = [NSClassFromString(aClass) performSelector:func];//这个警告不用管
     return returnObj;
 }
 
 //MARK:调用类方法1参数
-- (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 {
+- (id)runFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 {
     id returnObj = nil;
     SEL func = NSSelectorFromString(funcName);
-    if ([aClass respondsToSelector:func]) {
-        returnObj = [aClass performSelector:func withObject:arg1];//这个警告不用管
-    }
+    returnObj = [NSClassFromString(aClass) performSelector:func withObject:arg1];//这个警告不用管
     return returnObj;
 }
 
 //MARK:调用类方法2参数
-- (id)runFuncWithClass:(Class)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
+- (id)runFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
     id returnObj = nil;
     SEL func = NSSelectorFromString(funcName);
-    if ([aClass respondsToSelector:func]) {
-        returnObj = [aClass performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
-    }
+    returnObj = [NSClassFromString(aClass) performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
     return returnObj;
+}
+//MARK:调用类方法，无返回
+- (void)voidrunFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName {
+    SEL func = NSSelectorFromString(funcName);
+    [NSClassFromString(aClass) performSelector:func];//这个警告不用管
+}
+//MARK:调用类方法1参数，无返回
+- (void)voidrunFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 {
+    SEL func = NSSelectorFromString(funcName);
+    [NSClassFromString(aClass) performSelector:func withObject:arg1];//这个警告不用管
+}
+//MARK:调用类方法2参数，无返回
+- (void)voidrunFuncWithClass:(NSString *)aClass FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
+    SEL func = NSSelectorFromString(funcName);
+    [NSClassFromString(aClass) performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
 }
 
 //MARK:调用方法
@@ -164,6 +173,36 @@ static WZZOCH5Commander * wzzOCH5Commander;
         }
     });
     return returnObj;
+}
+
+//MARK:调用方法，无返回
+- (void)voidrunFuncWithObj:(id)obj FuncName:(NSString *)funcName {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SEL func = NSSelectorFromString(funcName);
+        if ([obj respondsToSelector:func]) {
+            [obj performSelector:func];//这个警告不用管
+        }
+    });
+}
+
+//MARK:调用方法1个参数，无返回
+- (void)voidrunFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SEL func = NSSelectorFromString(funcName);
+        if ([obj respondsToSelector:func]) {
+            [obj performSelector:func withObject:arg1];//这个警告不用管
+        }
+    });
+}
+
+//MARK:调用方法2个参数，无返回
+- (void)voidrunFuncWithObj:(id)obj FuncName:(NSString *)funcName Arg1:(id)arg1 Arg2:(id)arg2 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SEL func = NSSelectorFromString(funcName);
+        if ([obj respondsToSelector:func]) {
+            [obj performSelector:func withObject:arg1 withObject:arg2];//这个警告不用管
+        }
+    });
 }
 
 //MARK:js获取变量
